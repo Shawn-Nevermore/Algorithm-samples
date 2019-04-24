@@ -9,26 +9,47 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>抽象语法树</title>
 </head>
+
 <body>
-    
-    <script>
-var global1 = 1
-function fn1(param1){
-    var local1 = 'local1'
-    var local2 = 'local2'
-    function fn2(param2){
-        var local2 = 'inner local2'
-        console.log(local1)
-        console.log(local2)
-    }
 
-    function fn3(){
-        var local2 = 'fn3 local2'
-        fn2(local2)
-    }
+    <script class="closure1">
+        var global1 = 1
+        function fn1(param1) {
+            var local1 = 'local1'
+            var local2 = 'local2'
+            function fn2(param2) {
+                var local2 = 'inner local2'
+                console.log(local1)
+                console.log(local2)
+            }
 
-    fn3()
-}
+            function fn3() {
+                var local2 = 'fn3 local2'
+                fn2(local2)
+            }
+
+            fn3()
+        }
+    </script>
+    <script class="closure2">
+        var fn1 = (function () {
+            var password = 'somethingreallyimportant'
+            return {
+                getPassword: function () {
+                    return password
+                },
+                setPassword: function (code) {
+                    password = code
+                }
+            }
+        }())
+
+        fn1.password
+        fn1.getPassword()
+        fn1.setPassword('123456')
+        fn1.getPassword()
+
     </script>
 </body>
+
 </html>
